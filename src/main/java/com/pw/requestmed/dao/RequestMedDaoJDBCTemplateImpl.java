@@ -35,7 +35,7 @@ public class RequestMedDaoJDBCTemplateImpl implements RequestMedDao {
 	public List<RequestMed> retrieveRequest(int id) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		StringBuilder sql = new StringBuilder("select employee.emp_id, employee.firstname, employee.lastname, employee.mc_id, ");
-		sql.append("medicine.medicine_name, symptoms.symptoms_name, medrequest.create_date, medrequest.update_date ");
+		sql.append("medicine.medicine_id, medicine.medicine_name, symptoms.symptoms_id, symptoms.symptoms_name, medrequest.request_id, medrequest.create_date, medrequest.update_date ");
 		sql.append("from epharma.employee employee, ");
 		sql.append("epharma.med_request medrequest, "); 
 		sql.append(" epharma.medicine medicine, ");
