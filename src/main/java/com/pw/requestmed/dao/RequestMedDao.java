@@ -2,7 +2,6 @@ package com.pw.requestmed.dao;
 
 import java.util.List;
 
-import com.pw.requestmed.beans.Employee;
 import com.pw.requestmed.beans.RequestMed;
 
 public interface RequestMedDao {

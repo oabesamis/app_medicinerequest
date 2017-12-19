@@ -27,7 +27,14 @@ public class RequestMedDaoJDBCTemplateImpl implements RequestMedDao {
 
 	@Override
 	public void deleteRequest(RequestMed requestMed) {
-		// TODO Auto-generated method stub
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		String sql = "DELETE FROM epharma.med_request WHERE request_id=?";
+		int output = jdbcTemplate.update(sql, requestMed.getRequestId());
+		if(output != 0) {
+			System.out.println("Employee deleted with id "+requestMed.getRequestId());
+		}else {
+			System.out.println("Employee deletion failed with id "+requestMed.getRequestId());
+		}
 		
 	}
 
