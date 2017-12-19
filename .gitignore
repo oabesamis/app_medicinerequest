@@ -1,0 +1,12 @@
+log
+target
+.settings
+.classpath
+.project
+.springBeans
+message
+mecab-ipadic*
+*~
+.git
+.idea
+.DS_Store
