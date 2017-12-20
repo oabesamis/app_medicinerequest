@@ -5,7 +5,6 @@ import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -14,7 +13,6 @@ import javax.ws.rs.core.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.pw.requestmed.beans.Employee;
 import com.pw.requestmed.beans.RequestMed;
 import com.pw.requestmed.dao.RequestMedDao;
 
@@ -49,6 +47,15 @@ public class RequestMedService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response update(RequestMed requestMed) {
 		requestMedDao.updateRequest(requestMed);
+		return Response.status(200).build();
+	}
+	
+	@Path("/saveRequest")
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response save(RequestMed requestMed) {
+		requestMedDao.saveRequest(requestMed);
 		return Response.status(200).build();
 	}
 
