@@ -29,7 +29,7 @@ public class RequestMedDaoJDBCTemplateImpl implements RequestMedDao {
 	DataSource dataSource;
 
 	@Override
-	public void saveRequest(RequestMed requestMed) {
+	public int saveRequest(RequestMed requestMed) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);		
 		Object [] objs = new Object[]{requestMed.getEmployee().getId(), requestMed.getMedicine().getMedicineId(), 
 				requestMed.getSymptom().getSymptomId(), requestMed.getStatus(),
@@ -41,10 +41,11 @@ public class RequestMedDaoJDBCTemplateImpl implements RequestMedDao {
 			System.out.println("Request save failed with id "+requestMed.getEmployee().getId());
 		}
 		
+		return output;		
 	}
 
 	@Override
-	public void deleteRequest(RequestMed requestMed) {
+	public int deleteRequest(RequestMed requestMed) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		String sql = "DELETE FROM epharma.med_request WHERE request_id=?";
 		int output = jdbcTemplate.update(sql, requestMed.getRequestId());
@@ -53,7 +54,7 @@ public class RequestMedDaoJDBCTemplateImpl implements RequestMedDao {
 		}else {
 			System.out.println("Request deletion failed with id "+requestMed.getRequestId());
 		}
-		
+		return output;
 	}
 
 	@Override
@@ -69,7 +70,7 @@ public class RequestMedDaoJDBCTemplateImpl implements RequestMedDao {
 	}
 
 	@Override
-	public void updateRequest(RequestMed requestMed) {
+	public int updateRequest(RequestMed requestMed) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		
 		Object [] objs = new Object[]{requestMed.getEmployee().getId(), requestMed.getMedicine().getMedicineId(), 
@@ -81,7 +82,7 @@ public class RequestMedDaoJDBCTemplateImpl implements RequestMedDao {
 		}else {
 			System.out.println("request update failed with id "+requestMed.getRequestId());
 		}
-		
+		return output;
 	}
 	
 	
