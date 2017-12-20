@@ -18,13 +18,28 @@ public class RequestMedDaoJDBCTemplateImpl implements RequestMedDao {
 	
 	@Value("${SELECT_REQUEST_DATA}")
 	private StringBuilder RETRIEVE_REQ_MED;
-
+	
+	@Value("${UPDATE_MEDICINE_REQUEST}")
+	private StringBuilder UPDATE_MEDICINE_REQUEST;
+	
+	@Value("${SAVE_MEDICINE_REQUEST}")
+	private StringBuilder SAVE_MEDICINE_REQUEST;
+	
 	@Autowired
 	DataSource dataSource;
 
 	@Override
 	public void saveRequest(RequestMed requestMed) {
-		// TODO Auto-generated method stub
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);		
+		Object [] objs = new Object[]{requestMed.getEmployee().getId(), requestMed.getMedicine().getMedicineId(), 
+				requestMed.getSymptom().getSymptomId(), requestMed.getStatus(),
+				requestMed.getEmployee().getId(), requestMed.getEmployee().getId()};
+		int output = jdbcTemplate.update(SAVE_MEDICINE_REQUEST.toString(), objs);
+		if(output != 0) {
+			System.out.println("Request saved with id "+requestMed.getEmployee().getId());
+		}else {
+			System.out.println("Request save failed with id "+requestMed.getEmployee().getId());
+		}
 		
 	}
 
@@ -34,9 +49,9 @@ public class RequestMedDaoJDBCTemplateImpl implements RequestMedDao {
 		String sql = "DELETE FROM epharma.med_request WHERE request_id=?";
 		int output = jdbcTemplate.update(sql, requestMed.getRequestId());
 		if(output != 0) {
-			System.out.println("Employee deleted with id "+requestMed.getRequestId());
+			System.out.println("Request deleted with id "+requestMed.getRequestId());
 		}else {
-			System.out.println("Employee deletion failed with id "+requestMed.getRequestId());
+			System.out.println("Request deletion failed with id "+requestMed.getRequestId());
 		}
 		
 	}
@@ -55,8 +70,20 @@ public class RequestMedDaoJDBCTemplateImpl implements RequestMedDao {
 
 	@Override
 	public void updateRequest(RequestMed requestMed) {
-		// TODO Auto-generated method stub
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		
+		Object [] objs = new Object[]{requestMed.getEmployee().getId(), requestMed.getMedicine().getMedicineId(), 
+				requestMed.getEmployee().getId(), 
+				requestMed.getStatus(), requestMed.getRequestId()};
+		int output = jdbcTemplate.update(UPDATE_MEDICINE_REQUEST.toString(), objs);
+		if(output != 0) {
+			System.out.println("request updated with id "+requestMed.getRequestId());
+		}else {
+			System.out.println("request update failed with id "+requestMed.getRequestId());
+		}
 		
 	}
+	
+	
 
 }

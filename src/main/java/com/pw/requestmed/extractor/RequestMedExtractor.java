@@ -34,6 +34,7 @@ public class RequestMedExtractor implements ResultSetExtractor<RequestMed>{
 		symptom.setSymptomId(rs.getInt("symptoms_id"));
 		requestMed.setSymptom(symptom);
 		
+		requestMed.setStatus(rs.getInt("status"));
 		requestMed.setCreateTs(rs.getTimestamp("create_date"));
 		requestMed.setLastUpdateTs(rs.getTimestamp("update_date"));
 		
