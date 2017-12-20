@@ -9,15 +9,28 @@
     		http://www.springframework.org/schema/tx 
     		http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 	
+	<!-- Properties file load  -->	
+	 <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:dao.properties</value>
+                <value>classpath:sqlMed.properties</value>
+            </list>
+        </property> 
+        <property name="ignoreUnresolvablePlaceholders" value="true"/>
+    </bean>
+	
 	<!-- scans packages to find and register beans within the application context -->
     <context:component-scan base-package="com.pw.requestmed" />
-	
+		
 	<!-- dataSource configuration -->
-    <bean id="dataSource"
+	<bean id="dataSource"
         class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-        <property name="url" value="jdbc:mysql://localhost:3306/epharma" />
-        <property name="username" value="root" />
-        <property name="password" value="root" />
-    </bean>    
+        <property name="driverClassName" value="${driverclassname}" />
+        <property name="url" value="${url}" />
+        <property name="username" value="${username}" />
+        <property name="password" value="${password}" />
+    </bean>
+    
+  
 </beans>

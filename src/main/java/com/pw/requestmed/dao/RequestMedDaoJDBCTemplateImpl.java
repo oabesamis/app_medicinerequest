@@ -18,7 +18,10 @@ public class RequestMedDaoJDBCTemplateImpl implements RequestMedDao {
 	
 	@Value("${SELECT_REQUEST_DATA}")
 	private StringBuilder RETRIEVE_REQ_MED;
-
+	
+	@Value("${UPDATE_MEDICINE_REQUEST}")
+	private StringBuilder UPDATE_MEDICINE_REQUEST;
+	
 	@Autowired
 	DataSource dataSource;
 
@@ -55,7 +58,17 @@ public class RequestMedDaoJDBCTemplateImpl implements RequestMedDao {
 
 	@Override
 	public void updateRequest(RequestMed requestMed) {
-		// TODO Auto-generated method stub
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		
+		Object [] objs = new Object[]{requestMed.getEmployee().getId(), requestMed.getMedicine().getMedicineId(), 
+				requestMed.getEmployee().getId(), 
+				requestMed.getStatus(), requestMed.getRequestId()};
+		int output = jdbcTemplate.update(UPDATE_MEDICINE_REQUEST.toString(), objs);
+		if(output != 0) {
+			System.out.println("Employee updated with id "+requestMed.getRequestId());
+		}else {
+			System.out.println("Employee update failed with id "+requestMed.getRequestId());
+		}
 		
 	}
 
