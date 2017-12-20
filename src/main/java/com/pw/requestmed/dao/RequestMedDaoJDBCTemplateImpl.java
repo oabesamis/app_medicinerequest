@@ -65,9 +65,9 @@ public class RequestMedDaoJDBCTemplateImpl implements RequestMedDao {
 				requestMed.getStatus(), requestMed.getRequestId()};
 		int output = jdbcTemplate.update(UPDATE_MEDICINE_REQUEST.toString(), objs);
 		if(output != 0) {
-			System.out.println("Employee updated with id "+requestMed.getRequestId());
+			System.out.println("request updated with id "+requestMed.getRequestId());
 		}else {
-			System.out.println("Employee update failed with id "+requestMed.getRequestId());
+			System.out.println("request update failed with id "+requestMed.getRequestId());
 		}
 		
 	}
