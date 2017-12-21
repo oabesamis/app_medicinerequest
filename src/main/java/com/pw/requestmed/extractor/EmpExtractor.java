@@ -12,13 +12,17 @@ public class EmpExtractor implements ResultSetExtractor<Employee>{
 
 	public Employee extractData(ResultSet resultSet) throws SQLException, DataAccessException {
 		Employee emp = new Employee();
-		int id = resultSet.getInt("id");
-		String firstName = resultSet.getString("first_Name");
-		String lastName = resultSet.getString("last_Name");
+		int id = resultSet.getInt("emp_id");
+		String firstName = resultSet.getString("firstname");
+		String lastName = resultSet.getString("lastname");
+		int mc_id = resultSet.getInt("mc_id");
+		String circleName = resultSet.getString("circle_name");
 		
 		emp.setId(id);
 		emp.setFirstName(firstName);
 		emp.setLastName(lastName);
+		emp.setMarketCircleId(mc_id);
+		emp.setCircleName(circleName);
 		
 		return emp;
 	}
