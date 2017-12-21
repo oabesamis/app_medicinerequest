@@ -1,4 +1,4 @@
-package com.pw.requestmed.rest;
+package com.pw.requestmed.rest.controller;
 
 import java.util.List;
 
@@ -18,7 +18,7 @@ import com.pw.requestmed.beans.Employee;
 import com.pw.requestmed.dao.EmpDao;
 
 @Path("/emp")
-public class EmpService {
+public class EmployeeController {
 
 	@Autowired
 	private EmpDao empDao;
