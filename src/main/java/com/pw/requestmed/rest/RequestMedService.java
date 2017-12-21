@@ -37,8 +37,8 @@ public class RequestMedService {
 	public Response deleteById(@PathParam("id") int id) {
 		RequestMed requestMed = new RequestMed();
 		requestMed.setRequestId(id);
-		requestMedDao.deleteRequest(requestMed);
-		return Response.status(200).build();
+		int rowsUpdated = requestMedDao.deleteRequest(requestMed);
+		return Response.status(200).entity(rowsUpdated).build();
 	}
 	
 	@Path("/updateRequest")
@@ -46,8 +46,8 @@ public class RequestMedService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response update(RequestMed requestMed) {
-		requestMedDao.updateRequest(requestMed);
-		return Response.status(200).build();
+		int rowsUpdated = requestMedDao.updateRequest(requestMed);
+		return Response.status(200).entity(rowsUpdated).build();
 	}
 	
 	@Path("/saveRequest")
@@ -55,8 +55,8 @@ public class RequestMedService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response save(RequestMed requestMed) {
-		requestMedDao.saveRequest(requestMed);
-		return Response.status(200).build();
+		int rowsUpdated = requestMedDao.saveRequest(requestMed);
+		return Response.status(200).entity(rowsUpdated).build();
 	}
 
 }
