@@ -5,6 +5,7 @@ public class Employee {
 	private String firstName;
 	private String lastName;
 	private int marketCircleId;
+	private String circleName;
 	
 	public int getId() {
 		return id;
@@ -37,7 +38,14 @@ public class Employee {
 		sb.append(", FirstName : "+firstName);
 		sb.append(", LastName : "+lastName);
 		sb.append(", MarketCircleId : "+marketCircleId);
+		sb.append(", circleName : ").append(circleName);
 		
 		return sb.toString();
+	}
+	public String getCircleName() {
+		return circleName;
+	}
+	public void setCircleName(String circleName) {
+		this.circleName = circleName;
 	}
 }

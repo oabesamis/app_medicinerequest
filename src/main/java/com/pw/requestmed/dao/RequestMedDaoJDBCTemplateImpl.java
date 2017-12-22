@@ -40,8 +40,7 @@ public class RequestMedDaoJDBCTemplateImpl implements RequestMedDao {
 		}else {
 			System.out.println("Request save failed with id "+requestMed.getEmployee().getId());
 		}
-		
-		return output;		
+		return output;
 	}
 
 	@Override

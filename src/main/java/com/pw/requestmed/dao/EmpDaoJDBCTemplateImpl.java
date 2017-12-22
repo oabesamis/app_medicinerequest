@@ -64,7 +64,9 @@ public class EmpDaoJDBCTemplateImpl implements EmpDao {
 	public List<Employee> getAll() {
 		List<Employee> emps = new ArrayList<Employee>();
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-		String sql = "select * from employee";
+		String sql = "SELECT emp_id, firstname, lastname, circle_name, e.mc_id mc_id " +
+				"FROM employee e, market_circle mc " +
+				"where e.mc_id = mc.mc_id";
 		emps = jdbcTemplate.query(sql, new EmpRowMapper());
 		return emps;
 	}

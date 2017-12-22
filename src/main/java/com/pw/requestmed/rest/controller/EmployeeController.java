@@ -1,4 +1,4 @@
-package com.pw.requestmed.rest;
+package com.pw.requestmed.rest.controller;
 
 import java.util.List;
 
@@ -9,6 +9,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -18,7 +19,7 @@ import com.pw.requestmed.beans.Employee;
 import com.pw.requestmed.dao.EmpDao;
 
 @Path("/emp")
-public class EmpService {
+public class EmployeeController {
 
 	@Autowired
 	private EmpDao empDao;
@@ -28,15 +29,21 @@ public class EmpService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getAll() {
 		List<Employee> emps = empDao.getAll();
-		return Response.status(200).entity(emps).build();
+		return Response.ok().entity(new GenericEntity<List<Employee>>(emps) {})
+	            .header("Access-Control-Allow-Origin", "*")
+	            .header("Content-Type", "application/json")
+	            .header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT, OPTIONS, HEAD")
+	            .build();				
 	}
+	
 	
 	@Path("/get/{id}")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getById(@PathParam("id") int id) {
 		Employee emp = empDao.getById(id); 
-		return Response.status(200).entity(emp).build();
+		return Response.status(200).entity(emp).header("Access-Control-Allow-Origin", "*")
+				.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT").build();
 	}
 	
 	@Path("/save")
@@ -45,7 +52,8 @@ public class EmpService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response save(Employee emp) {
 		empDao.save(emp);
-		return Response.status(200).build();
+		return Response.status(200).header("Access-Control-Allow-Origin", "*")
+				.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT").build();
 	}
 	
 	@Path("/update")
@@ -54,7 +62,8 @@ public class EmpService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response update(Employee emp) {
 		empDao.update(emp);
-		return Response.status(200).build();
+		return Response.status(200).header("Access-Control-Allow-Origin", "*")
+				.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT").build();
 	}
 	
 	@Path("/delete/{id}")
@@ -62,6 +71,7 @@ public class EmpService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response deleteById(@PathParam("id") int id) {
 		empDao.deleteById(id);
-		return Response.status(200).build();
+		return Response.status(200).header("Access-Control-Allow-Origin", "*")
+				.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT").build();
 	}
 }
