@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.pw.requestmed.beans.Employee;
 import com.pw.requestmed.beans.RequestMed;
+import com.pw.requestmed.dao.EmpDao;
 import com.pw.requestmed.dao.RequestMedDao;
 
 @Service("requestMedService")
@@ -14,7 +15,10 @@ public class RequestMedServiceImpl implements RequestMedService {
 
 	@Autowired
 	private RequestMedDao requestMedDao;
-		
+	
+	@Autowired
+	private EmpDao empDao;
+			
 	@Override
 	public int saveRequest(RequestMed requestMed) {
 		int rowsUpdated = requestMedDao.saveRequest(requestMed);
@@ -68,5 +72,11 @@ public class RequestMedServiceImpl implements RequestMedService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public Employee retrieveRequestMedsByEmpId(Employee employee){
+		Employee emp = empDao.getRequestsByEmpId(employee);
+		return emp;
+	}
+	
 
 }

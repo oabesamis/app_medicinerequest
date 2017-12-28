@@ -12,6 +12,7 @@ public interface RequestMedService {
 	public int deleteRequest(RequestMed requestMed);
 	public List<RequestMed> retrieveRequest(int id);
 	public int updateRequest(RequestMed requestMed);
+	public Employee retrieveRequestMedsByEmpId(Employee employee);
 	
 	//Employee
 	public void save(Employee emp);

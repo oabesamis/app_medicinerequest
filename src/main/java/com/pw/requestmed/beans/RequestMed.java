@@ -4,7 +4,6 @@ import java.sql.Timestamp;
 
 public class RequestMed {
 	private int requestId;
-	private Employee employee;
 	private Medicine medicine;
 	private Symptom symptom;
 	private int status;
@@ -16,12 +15,6 @@ public class RequestMed {
 	}
 	public void setRequestId(int requestId) {
 		this.requestId = requestId;
-	}
-	public Employee getEmployee() {
-		return employee;
-	}
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
 	}
 	public Medicine getMedicine() {
 		return medicine;
