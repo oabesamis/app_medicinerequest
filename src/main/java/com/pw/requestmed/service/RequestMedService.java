@@ -3,7 +3,9 @@ package com.pw.requestmed.service;
 import java.util.List;
 
 import com.pw.requestmed.beans.Employee;
+import com.pw.requestmed.beans.Medicine;
 import com.pw.requestmed.beans.RequestMed;
+import com.pw.requestmed.beans.Symptom;
 
 public interface RequestMedService {
 
@@ -20,4 +22,7 @@ public interface RequestMedService {
 	public void update(Employee employee);
 	public void deleteById(int id);
 	public List<Employee> getAll();
+	
+	public List<Medicine> getAllMedicines();
+	public List<Symptom> getAllSymptoms();
 }

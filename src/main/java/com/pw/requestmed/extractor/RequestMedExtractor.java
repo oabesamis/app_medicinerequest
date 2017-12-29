@@ -6,9 +6,9 @@ import java.sql.SQLException;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.ResultSetExtractor;
 
-import com.pw.requestmed.beans.Employee;
 import com.pw.requestmed.beans.Medicine;
 import com.pw.requestmed.beans.RequestMed;
+import com.pw.requestmed.beans.Status;
 import com.pw.requestmed.beans.Symptom;
 
 public class RequestMedExtractor implements ResultSetExtractor<RequestMed>{
@@ -25,7 +25,11 @@ public class RequestMedExtractor implements ResultSetExtractor<RequestMed>{
 		symptom.setSymptomId(rs.getInt("symptoms_id"));
 		requestMed.setSymptom(symptom);
 		
-		requestMed.setStatus(rs.getInt("status"));
+		Status status = new Status();
+		status.setStatusId(rs.getInt("status_id"));
+		status.setStatusName(rs.getString("status_name"));
+		
+		requestMed.setStatus(status);
 		requestMed.setCreateTs(rs.getTimestamp("create_date"));
 		requestMed.setLastUpdateTs(rs.getTimestamp("update_date"));
 		

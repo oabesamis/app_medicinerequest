@@ -15,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.pw.requestmed.beans.Employee;
 import com.pw.requestmed.beans.RequestMed;
-import com.pw.requestmed.dao.EmpDao;
+import com.pw.requestmed.dao.MedicineDao;
 import com.pw.requestmed.dao.RequestMedDao;
 
 
@@ -24,6 +24,9 @@ public class RequestMedService {
 	
 	@Autowired
 	private RequestMedDao requestMedDao;
+	
+	@Autowired
+	private MedicineDao medicineDao;
 	
 	/*@Autowired
 	private EmpDao empDao;*/
