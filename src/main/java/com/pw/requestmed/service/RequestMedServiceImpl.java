@@ -6,15 +6,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.pw.requestmed.beans.Employee;
+import com.pw.requestmed.beans.Medicine;
 import com.pw.requestmed.beans.RequestMed;
+import com.pw.requestmed.beans.Symptom;
+import com.pw.requestmed.dao.EmpDao;
+import com.pw.requestmed.dao.MedicineDao;
 import com.pw.requestmed.dao.RequestMedDao;
+import com.pw.requestmed.dao.SymptomDao;
 
 @Service("requestMedService")
 public class RequestMedServiceImpl implements RequestMedService {
 
 	@Autowired
 	private RequestMedDao requestMedDao;
-		
+	
+	@Autowired
+	private EmpDao empDao;
+	
+	@Autowired
+	private MedicineDao medicineDao;
+	
+	@Autowired
+	private SymptomDao symptomDao;
+			
 	@Override
 	public int saveRequest(RequestMed requestMed) {
 		int rowsUpdated = requestMedDao.saveRequest(requestMed);
@@ -68,5 +82,20 @@ public class RequestMedServiceImpl implements RequestMedService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public Employee retrieveRequestMedsByEmpId(Employee employee){
+		Employee emp = empDao.getRequestsByEmpId(employee);
+		return emp;
+	}
+	
+	public List<Medicine> getAllMedicines(){
+		List<Medicine> medicines = medicineDao.getAllMedicines();
+		return medicines;		
+	}
+	public List<Symptom> getAllSymptoms(){
+		List<Symptom> symptoms = symptomDao.getAllSymptoms();
+		return symptoms;
+	}
+	
 
 }

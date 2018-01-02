@@ -4,10 +4,9 @@ import java.sql.Timestamp;
 
 public class RequestMed {
 	private int requestId;
-	private Employee employee;
 	private Medicine medicine;
 	private Symptom symptom;
-	private int status;
+	private Status status;
 	private Timestamp createTs;
 	private Timestamp lastUpdateTs;
 	
@@ -16,12 +15,6 @@ public class RequestMed {
 	}
 	public void setRequestId(int requestId) {
 		this.requestId = requestId;
-	}
-	public Employee getEmployee() {
-		return employee;
-	}
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
 	}
 	public Medicine getMedicine() {
 		return medicine;
@@ -35,10 +28,10 @@ public class RequestMed {
 	public void setSymptom(Symptom symptom) {
 		this.symptom = symptom;
 	}	
-	public int getStatus() {
+	public Status getStatus() {
 		return status;
 	}
-	public void setStatus(int status) {
+	public void setStatus(Status status) {
 		this.status = status;
 	}
 	public Timestamp getCreateTs() {

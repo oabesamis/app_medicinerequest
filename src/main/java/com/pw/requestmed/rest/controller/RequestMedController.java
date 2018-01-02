@@ -15,6 +15,7 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.pw.requestmed.beans.Employee;
 import com.pw.requestmed.beans.RequestMed;
 import com.pw.requestmed.service.RequestMedService;
 
@@ -37,6 +38,19 @@ public class RequestMedController {
 		logger.info("Size --> " + requestList.size());
 		logger.info("-- END RequestMedController.viewRequestList --");
 		return Response.status(200).entity(requestList).build();
+	}
+	
+	@Path("/viewRequestListByEmpId")	
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response viewRequestListByEmpId(Employee employee) {
+		logger.info("-- START RequestMedController.viewRequestListByEmpId --");
+		logger.info("ID --> " + employee.getId());
+		Employee emp = requestMedService.retrieveRequestMedsByEmpId(employee);
+		logger.info("Size --> " + emp.getRequestMeds().size());
+		logger.info("-- END RequestMedController.viewRequestListByEmpId --");
+		return Response.status(200).entity(emp).build();
 	}
 	
 	@Path("/deleteRequest/{id}")

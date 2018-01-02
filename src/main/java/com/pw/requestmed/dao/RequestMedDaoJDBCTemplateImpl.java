@@ -30,7 +30,7 @@ public class RequestMedDaoJDBCTemplateImpl implements RequestMedDao {
 
 	@Override
 	public int saveRequest(RequestMed requestMed) {
-		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);		
+		/*JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);		
 		Object [] objs = new Object[]{requestMed.getEmployee().getId(), requestMed.getMedicine().getMedicineId(), 
 				requestMed.getSymptom().getSymptomId(), requestMed.getStatus(),
 				requestMed.getEmployee().getId(), requestMed.getEmployee().getId()};
@@ -40,7 +40,8 @@ public class RequestMedDaoJDBCTemplateImpl implements RequestMedDao {
 		}else {
 			System.out.println("Request save failed with id "+requestMed.getEmployee().getId());
 		}
-		return output;
+		return output;*/
+		return 0;
 	}
 
 	@Override
@@ -70,7 +71,7 @@ public class RequestMedDaoJDBCTemplateImpl implements RequestMedDao {
 
 	@Override
 	public int updateRequest(RequestMed requestMed) {
-		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		/*JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		
 		Object [] objs = new Object[]{requestMed.getEmployee().getId(), requestMed.getMedicine().getMedicineId(), 
 				requestMed.getEmployee().getId(), 
@@ -81,7 +82,8 @@ public class RequestMedDaoJDBCTemplateImpl implements RequestMedDao {
 		}else {
 			System.out.println("request update failed with id "+requestMed.getRequestId());
 		}
-		return output;
+		return output;*/
+		return 0;
 	}
 	
 	

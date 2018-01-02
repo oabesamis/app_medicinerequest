@@ -15,4 +15,6 @@ public interface EmpDao {
 	public void deleteById(int id);
 	//Get All
 	public List<Employee> getAll();
+	
+	public Employee getRequestsByEmpId(Employee employee);
 }

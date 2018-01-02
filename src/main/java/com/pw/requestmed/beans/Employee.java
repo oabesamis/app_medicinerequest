@@ -1,11 +1,14 @@
 package com.pw.requestmed.beans;
 
+import java.util.List;
+
 public class Employee {
 	private int id;
 	private String firstName;
 	private String lastName;
 	private int marketCircleId;
 	private String circleName;
+	private List<RequestMed> requestMeds;
 	
 	public int getId() {
 		return id;
@@ -47,5 +50,11 @@ public class Employee {
 	}
 	public void setCircleName(String circleName) {
 		this.circleName = circleName;
+	}
+	public List<RequestMed> getRequestMeds() {
+		return requestMeds;
+	}
+	public void setRequestMeds(List<RequestMed> requestMeds) {
+		this.requestMeds = requestMeds;
 	}
 }

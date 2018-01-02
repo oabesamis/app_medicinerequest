@@ -13,7 +13,9 @@ import javax.ws.rs.core.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.pw.requestmed.beans.Employee;
 import com.pw.requestmed.beans.RequestMed;
+import com.pw.requestmed.dao.MedicineDao;
 import com.pw.requestmed.dao.RequestMedDao;
 
 
@@ -23,11 +25,26 @@ public class RequestMedService {
 	@Autowired
 	private RequestMedDao requestMedDao;
 	
+	@Autowired
+	private MedicineDao medicineDao;
+	
+	/*@Autowired
+	private EmpDao empDao;*/
+	
 	@Path("/viewRequestList/{id}")	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response viewRequestList(@PathParam("id") int id) {
 		List<RequestMed> requestList = requestMedDao.retrieveRequest(id);
+		return Response.status(200).entity(requestList).build();
+	}
+	
+	@Path("/viewRequestListByEmpId")	
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response viewRequestListByEmpId(Employee employee) {
+		List<RequestMed> requestList = requestMedDao.retrieveRequest(employee.getId());
 		return Response.status(200).entity(requestList).build();
 	}
 	
